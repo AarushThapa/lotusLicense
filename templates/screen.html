@@ -1,0 +1,35 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container top5">
+
+    <div class="row">
+  <div class="col-8">
+        <img src="{% url 'videofeed' %}" class="img-fluid" width="800vh" \>
+  </div>
+  <div class="col-4">
+      <div class="text-uppercase  display-4">Instructions</div>
+      <ul class="top5 font-weight-light pl-3">
+          <li>
+            Whenever a vehicle passes, it is automatically scanned.
+          </li>
+          <li>
+            <span class="text-warning lead">Warning!</span> Leaving this page will stop the surveillance.
+          </li>
+      </ul>
+
+  </div>
+
+</div>
+
+</div>
+
+{% else %}
+    <p>Login <a href="/login">here!</a></p>
+{% endif %}
+{% endblock %}
+
+
+

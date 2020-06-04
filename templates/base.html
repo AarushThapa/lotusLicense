@@ -1,0 +1,156 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ALPRC</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+   <link rel="shortcut icon" href="{% static 'img/logoa.png' %}" />
+
+<style>
+  body{
+      background-color:black; !important
+      text: white; !important
+      font:14px/28px DINPro-Bold,Arial,Verdana,sans-serif; !important
+  }
+  .carousel-item{
+    height: 90vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+  .carousel-caption{
+      bottom: 270px;
+  }
+
+  .carousel-caption h5{
+      font-size: 45px;
+  }
+  .carousel-caption p{
+      width: 75%;
+      margin:auto;
+      font-size: 18px;
+      line-height:1.9;
+  }
+  .navbar-light .navabar-brand{
+       color: #fff;
+       font-size: 25px;
+       text-transform: uppercase;
+       font-weight: bold;
+       letter-spacing: 2px;
+       font:14px/28px DINPro-Bold,Arial,Verdana,sans-serif; !important
+  }
+  .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link{
+      color: white;
+  }
+<!--  .navbar-dark .navbar-nav .nav-link{-->
+<!--        color: white;-->
+<!--  }-->
+
+  .top30 { margin-top:30vh; }
+  .top15 { margin-top:15vh; }
+  .top10 { margin-top:10vh; }
+  .top5 { margin-top:5vh; }
+  .bg-white{
+    background-color: white; !important
+    text:black;
+  }
+  .navbar-dark .navbar-nav .nav-link:focus,.navbar-dark .navbar-nav .nav-link:hover{
+        color: white;
+  }
+
+</style>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logoa.png' %}" height="50px" width="50px"/></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item mx-4">
+        <a class="nav-link text-uppercase" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item mr-4">
+        <a class="nav-link text-uppercase" href="{% url 'displaylog' %}">Log</a>
+      </li>
+        <li class="nav-item mr-4">
+        <a class="nav-link text-uppercase" href="{% url 'addowner' %}">Add Owner</a>
+      </li>
+        </li>
+        <li class="nav-item mr-4">
+        <a class="nav-link text-uppercase" href="{% url 'stream' %}">Start Surveillance</a>
+      </li>
+      {% else %}
+    <li class="nav-item mr-4">
+        <a class="nav-link text-uppercase" href="{% url 'register' %}">Register</a>
+      </li>
+    {% endif %}
+
+
+        <li class="nav-item mr-4">
+        <a class="nav-link text-uppercase" href="#">Contact Us</a>
+      </li>
+
+    </ul>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" ><button class="btn btn-outline-light my-2 my-sm-0 text-uppercase" type="submit"> Logout</button></a>
+    {% else %}
+    <a href="{% url 'login' %}" ><button class="btn btn-outline-light my-2 my-sm-0 text-uppercase" type="submit"> Login</button></a>
+    {% endif %}
+      </div>
+  </div>
+</nav>
+<body class="text-white">
+
+{% block content %}
+
+
+{% endblock %}
+
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script>
+  window.sr = ScrollReveal();
+  sr.reveal('.scrolleft',{
+    duration: 3000,
+    distance: "300px",
+    origin: 'left',
+    reset: true
+  })
+  window.sr = ScrollReveal();
+  sr.reveal('.scrollup',{
+    duration: 3000,
+    distance: "300px",
+    origin: 'bottom',
+    reset: true
+  })
+  window.sr = ScrollReveal();
+  sr.reveal('.scrolldelay0',{
+    duration: 2000,
+    distance: "300px",
+    origin: 'left',
+    reset: true
+  })
+  window.sr = ScrollReveal();
+  sr.reveal('.scrolldelay1',{
+    duration: 3000,
+    distance: "300px",
+    origin: 'left',
+    reset: true
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block content %}
+{% if user.is_authenticated %}
+
+    {% load crispy_forms_tags %}
+
+<div class="bg white">
+
+  <div class="row">
+    <div class="col">
+    </div>
+
+    <div class="col-6">
+         <form class="form-group text-white"  action="{% url 'addowner' %}" method="POST">
+             {% if messages %}
+             {% for message in messages %}
+                <div {% if message.tags %}  class="alert alert-{{ message.tags }}"  {% endif %} role="alert">
+                {{ message }}
+                 {% endfor %}
+                </div>
+
+
+                 {% endif %}
+              {% csrf_token %}
+              {{form|crispy}}
+             <button type="submit" class="btn btn-success">Add User</button>
+          </form>
+
+            </div>
+
+    <div class="col">
+    </div>
+  </div>
+
+    {% else %}
+    <p>Login <a href="/login">here!</a></p>
+{% endif %}
+    {% endblock %}
+

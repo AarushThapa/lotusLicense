@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block content %}
+{% if user.is_authenticated %}
+
+    {% for owner in owners%}
+    <p>{{owner.owner_name}}</p>
+    {%endfor%}
+    {% else %}
+    <p>Login <a href="/login">here!</a></p>
+{% endif %}
+    {% endblock %}

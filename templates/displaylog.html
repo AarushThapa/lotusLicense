@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+<table class="table table-dark">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Vehicle Number</th>
+      <th scope="col">In Time</th>
+      <th scope="col">Out Time</th>
+        <th scope="col">Owner Name</th>
+    </tr>
+  </thead>
+    <tbody class="font-weight-light">
+    {% for one in loglist%}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{ one.numberplate }}</td>
+      <td>{{ one.timein }}</td>
+      <td>{{ one.timeout }}</td>
+      <td>
+      {% for num in ownerlist %}
+        {% if one.numberplate in num.vehiclenumber %}
+         {{num.owner_name}}
+        {% endif %}
+      {% endfor %}
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+  <div class="pagination d-flex justify-content-center">
+<!--    {{loglist.has_previous}}-->
+<!--  {{loglist.number}}-->
+<!--  {{loglist.paginator.count}}-->
+<!--    {{loglist.paginator.num_pages}}-->
+<!--    {{loglist.paginator.page_range}}-->
+<!--    {{loglist.has_next}}-->
+
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination ">
+
+      {%if loglist.has_previous %}
+        <li class="page-item">
+        <a href="?page={{loglist.previous_page_number}}" class="page-link" ria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+        </a>
+        </li>
+      {%endif%}
+
+    {%  for num in loglist.paginator.page_range %}
+      {% if loglist.number == num %}
+     <li class="page-item active">
+      <a class="page-link">{{num}}<span class="sr-only">(current)</span></a>
+    </li>
+    <strong></strong>
+      {%elif num > loglist.number|add:'-3' and num < loglist.number|add:'3' %}
+      <li class="page-item"><a class="page-link" href="?page={{num}}">{{num}}</a></li>
+    {%endif%}
+    {%endfor%}
+
+      {%if loglist.has_next%}
+      <a class="page-link" href="?page={{loglist.next_page_number}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+      {%endif%}
+    </li>
+  </ul>
+  </nav>
+
+
+</div>
+</div>
+
+{% else %}
+    <p>Login <a href="/login">here!</a></p>
+{% endif %}
+{% endblock %}
+
