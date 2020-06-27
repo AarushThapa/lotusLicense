@@ -1,7 +1,8 @@
-# lotusLicense is an AI application developed with Django framework.
+# LotusLicense is an AI application developed with Django framework.
 AI: CNN (deep learning)
 framework: Django
 lanauge: Python
+frontend: bootstrap
 
 Capability:
 Scan the live einvroment and recognize the number plate of the vehicle
